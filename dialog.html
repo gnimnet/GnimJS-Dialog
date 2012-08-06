@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Dialog</title>
+        <link rel="stylesheet" href="dialog.css" type="text/css"/>
+        <style type="text/css">
+            * {margin:0;padding:0;}
+            body{padding:10px;}
+            h1{font-size:22px;margin:15px 0 5px;}
+            h2{font-size:20px;margin:13px 0 5px;}
+            h3{font-size:18px;margin:11px 0 5px;}
+            h4{font-size:16px;margin:9px 0 5px;}
+            h5{font-size:14px;margin:7px 0 5px;}
+            h6{font-size:12px;margin:5px 0 5px;}
+            p,.line{display:block;padding:5px;}
+            p{line-height:150%;}
+            button{padding:3px;margin:5px;}
+
+        </style>
+    </head>
+    <body>
+        <div id="action">
+            <h3>操作</h3>
+            <p>打开一个基本对话框</p>
+            <p><button onclick="test1();">测试1</button></p>
+            <p>打开一个居中对话框</p>
+            <p><button onclick="test2();">测试2</button></p>
+            <p>打开一个有宽度高度的对话框</p>
+            <p><button onclick="test3();">测试3</button></p>
+            <p>打开一个带关闭监听器的对话框</p>
+            <p><button onclick="test4();">测试4</button></p>
+            <p>关闭全部对话框（NutDialog.open打开的对话框）</p>
+            <p><button onclick="test5();">测试5</button></p>
+            <p>打开测试对话框</p>
+            <p><button onclick="test6();">测试6</button></p>
+        </div>
+        <script src="https://raw.github.com/RockMing/GnimJS/master/full/gnim.js"></script>
+        <script src="dialog-min.js"></script>
+        <script>
+            var dialog,id=0;
+            NutDialog.hasMask(false);
+            function getNewID(){
+                return 'dialog_'+(++id);
+            }
+            function test1(){
+                new NutDialog({
+                    title:'Hello World',
+                    content:'Hello World!'
+                },getNewID());
+            }
+            function test2(){
+                NutDialog.open({
+                    title:'居中对话框',
+                    content:'<p style="text-align:center;">这是一个居中的对话框...</p>'
+                });
+            }
+            function test3(){
+                NutDialog.open({
+                    title:'有大小的对话框',
+                    content:'<p style="text-align:center;">高度400px，宽度600px的对话框...</p>',
+                    width:300,
+                    height:200
+                });
+            }
+            function test4(){
+                NutDialog.open({
+                    title:'关闭监听对话框',
+                    content:'<p style="text-align:center;">这是带关闭监听的对话框...</p>',
+                    listener:function(){
+                        alert('关闭...');
+                    }
+                });
+            }
+            function test5(){
+                NutDialog.close();
+            }
+            function test6(){
+                if(dialog && !dialog.isClosed){
+                    dialog.close();
+                }
+                var htmlStr='<p>点击下面的按钮测试...</p>'
+                    +'<p><button onclick="t1();">获取标题</button><button onclick="t2();">获取内容</button></p>'
+                    +'<p><button onclick="t3();">修改标题</button><button onclick="t4();">修改内容</button></p>'
+                    +'<p><button onclick="t5();">修改位置1</button><button onclick="t6();">修改位置2</button></p>';
+                dialog=NutDialog.open({
+                    title:'测试对话框',
+                    content:htmlStr
+                });
+            }
+            function t1(){
+                if(dialog){
+                    alert(dialog.title().text());
+                }
+            }
+            function t2(){
+                if(dialog){
+                    alert(dialog.content().text());
+                }
+            }
+            function t3(){
+                if(dialog){
+                    dialog.title('修改后的标题');
+                }
+            }
+            function t4(){
+                if(dialog){
+                    dialog.content('修改后的内容');
+                }
+            }
+            function t5(){
+                if(dialog){
+                    dialog.position(-100,-200);
+                }
+            }
+            function t6(){
+                if(dialog){
+                    dialog.position(0,0,0);
+                }
+            }
+        </script>
+    </body>
+</html>

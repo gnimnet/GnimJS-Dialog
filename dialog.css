@@ -1,0 +1,17 @@
+/*
+ * This CSS file for Dialog JavaScript component
+ * this component works for GnimJS
+ * Write by Ming
+ * Date 2012.04.22
+ */
+
+.dialog-con,
+.dialog-items{position:absolute;left:0;top:0;width:0;height:0;overflow:visible;}
+.dialog-mask{position:absolute;left:0;top:0;background:#000;}
+.dialog-item{position:absolute;display:block;border:#464544 1px solid;font-size:12px;background:#fff;text-align:left;}
+.dialog-item-draging{border-width:1px;}
+.dialog-title{position:relative;display:block;padding:6px 20px 6px 10px;background:#7d7d7d;color:#fff;height:14px;cursor:move;}
+.dialog-title-text{white-space:pre-line;}
+.dialog-title-close{display:block;position:absolute;width:12px;height:12px;right:7px;top:7px;background:url("dialogx.gif");cursor:pointer;}
+.dialog-title-close:active{top:8px;}
+.dialog-content{padding:10px;height:auto;overflow:visible;background:#fff;}
